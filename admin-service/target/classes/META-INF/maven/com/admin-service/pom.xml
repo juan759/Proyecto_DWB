@@ -5,13 +5,13 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.7.8</version>
+		<version>2.6.6</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com</groupId>
-	<artifactId>product</artifactId>
+	<artifactId>admin-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>product</name>
+	<name>admin-service</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
@@ -20,47 +20,23 @@
 	</properties>
 	<dependencies>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>de.codecentric</groupId>
 			<artifactId>spring-boot-admin-starter-server</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
-			<optional>true</optional>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-config</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-		    <groupId>org.springframework.boot</groupId>
-		    <artifactId>spring-boot-starter-data-jpa</artifactId>
-		    <version>2.6.3</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.springframework.boot</groupId>
-		    <artifactId>spring-boot-starter-validation</artifactId>
-		    <version>2.6.3</version>
-		</dependency>
-		<dependency>
-		    <groupId>mysql</groupId>
-		    <artifactId>mysql-connector-java</artifactId>
-		    <version>8.0.28</version>
-		</dependency>
-	<dependency>
-		<groupId>org.springframework.cloud</groupId>
-		<artifactId>spring-cloud-starter-config</artifactId>
-	</dependency>
-	<dependency>
-		<groupId>org.springframework.cloud</groupId>
-		<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-	</dependency>
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
@@ -71,7 +47,7 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-		<dependency>
+			<dependency>
 				<groupId>de.codecentric</groupId>
 				<artifactId>spring-boot-admin-dependencies</artifactId>
 				<version>${spring-boot-admin.version}</version>
