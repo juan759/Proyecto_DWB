@@ -85,12 +85,13 @@ public class SvcInvoiceImp implements SvcInvoice {
       item.setGtin(c.getGtin());
       item.setQuantity(c.getQuantity());
       item.setUnit_price(p.getPrice());
-      item.setTotal(p.getPrice() + c.getQuantity());
+      item.setTotal(p.getPrice() * c.getQuantity());
       item.setTaxes(item.getTotal() * .16);
       item.setSubtotal(item.getTotal() - item.getTaxes());
       item.setStatus(1);
-      try { repoItem.save(item); }
-      catch(Exception e) { throw new ApiException(HttpStatus.BAD_REQUEST, "cannot add item"); }
+      repoItem.save(item);
+      // try { repoItem.save(item); }
+      // catch(Exception e) { throw new ApiException(HttpStatus.BAD_REQUEST, "cannot add item"); }
       // Sumamos los totales
       st += item.getSubtotal(); 
       tx += item.getTaxes();
