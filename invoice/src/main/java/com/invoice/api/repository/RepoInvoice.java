@@ -11,7 +11,7 @@ import com.invoice.api.entity.Invoice;
 @Repository
 public interface RepoInvoice extends JpaRepository<Invoice, Integer>{
 	
-	@Query(value="SELECT * FROM invoice WHERE rfc = :rfc AND status = :status")
+	@Query(value="SELECT * FROM invoice WHERE rfc = :rfc AND status = :status", nativeQuery=true)
 	List<Invoice> findByRfcAndStatus(String rfc, Integer status);
 
 }
