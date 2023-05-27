@@ -1,6 +1,7 @@
 package com.invoice.api.service;
 
 import java.util.List;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -69,6 +70,7 @@ public class SvcInvoiceImp implements SvcInvoice {
 		//}
     
     List<Cart> carrito = repoCart.findByRfcAndStatus(rfc, 1);
+    List<Item> items = new ArrayList<>();
     // Caso de carro vacio
     if(carrito == null || carrito.isEmpty())
 			throw new ApiException(HttpStatus.NOT_FOUND, "cart has no items");
@@ -89,7 +91,8 @@ public class SvcInvoiceImp implements SvcInvoice {
       item.setTaxes(item.getTotal() * .16);
       item.setSubtotal(item.getTotal() - item.getTaxes());
       item.setStatus(1);
-      repoItem.save(item);
+      items.add(item);
+      // repoItem.save(item);
       // try { repoItem.save(item); }
       // catch(Exception e) { throw new ApiException(HttpStatus.BAD_REQUEST, "cannot add item"); }
       // Sumamos los totales
@@ -110,6 +113,11 @@ public class SvcInvoiceImp implements SvcInvoice {
 
     // Vaciamos el carrito del cliente
     repoCart.clearCart(rfc);
+
+    for(Item i : items) {
+      try { repoItem.save(i); }
+      catch(Exception e) { throw new ApiException(HttpStatus.BAD_REQUEST, "cannot add item"); }
+    }
 		
 		return new ApiResponse("invoice generated");
 	}
