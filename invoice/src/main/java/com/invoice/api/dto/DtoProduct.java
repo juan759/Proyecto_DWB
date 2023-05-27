@@ -10,6 +10,8 @@ public class DtoProduct {
 	
 	private String gtin;
 
+	private Double price;
+
 	public Integer getStock() {
 		return stock;
 	}
@@ -24,6 +26,14 @@ public class DtoProduct {
 
 	public void setGtin(String gtin) {
 		this.gtin = gtin;
+	}
+
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
 	}
 	
 }

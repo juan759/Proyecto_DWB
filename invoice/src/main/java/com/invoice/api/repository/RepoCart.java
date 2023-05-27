@@ -21,6 +21,12 @@ public interface RepoCart extends JpaRepository<Cart, Integer>{
 	@Transactional
 	@Query(value ="UPDATE cart SET status = 0 WHERE cart_id = :cart_id AND status = 1", nativeQuery = true)
 	Integer removeFromCart(@Param("cart_id") Integer cart_id);
+
+	@Modifying
+	@Transactional
+	@Query(value ="UPDATE cart SET quantity = :quantity, status = 1 WHERE cart_id = :cart_id", nativeQuery = true)
+	Integer updateCart(@Param("cart_id") Integer cart_id, @Param("quantity") Integer quantity);
+
 	
 	@Modifying
 	@Transactional
